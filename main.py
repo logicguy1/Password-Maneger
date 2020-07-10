@@ -22,7 +22,7 @@ def getPass(password_provided):
     return key
 
 def getData():
-    file = open("storeage.txt", "r")
+    file = open("storage.txt", "r")
     read = file.read()
     file.close()
     if read == "":
@@ -36,7 +36,7 @@ if getData() != False:
     while True:
         key = input("KEY: ")
         try:
-            file = open("storeage.txt", "r").readlines()
+            file = open("storage.txt", "r").readlines()
             dict = {}
             key = getPass(key)
             f = Fernet(key)
@@ -55,7 +55,7 @@ if getData() != False:
                 print(f"You failed {trys} times the system will lock for 5 minutes")
                 sleep(300)
             elif trys == 10:
-                file = open("storeage.txt", "w")
+                file = open("storage.txt", "w")
                 file.close()
                 print("You faied 10 times and all the files has been eraced!")
                 break
@@ -72,7 +72,7 @@ if getData() != False:
                 webe = f.encrypt(web.encode())
                 passwde = f.encrypt(passwd.encode())
 
-                file = open("storeage.txt", "a")
+                file = open("storage.txt", "a")
                 file.write(f"\n{webe.decode()}^^^^{passwde.decode()}")
                 file.close()
             elif inp == "2":
@@ -109,7 +109,7 @@ if getData() != False:
                     webe = f.encrypt(web.encode())
                     passwde = f.encrypt(str.encode())
 
-                    file = open("storeage.txt", "a")
+                    file = open("storage.txt", "a")
                     file.write(f"\n{webe.decode()}^^^^{passwde.decode()}")
                     file.close()
             else:
@@ -128,6 +128,6 @@ else:
         webe = f.encrypt(web.encode())
         passwde = f.encrypt(passwd.encode())
 
-        file = open("storeage.txt", "a")
+        file = open("storage.txt", "a")
         file.write(f"{webe.decode()}^^^^{passwde.decode()}")
         file.close()
